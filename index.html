@@ -55,3 +55,22 @@
 
 </body>
 </html>
+
+<script>
+    function _(element){
+        return document.getElementById(element);
+    }
+
+    var label = _("label_chat");
+    label.addEventListener("click",function(){
+        var inner_panel = _("inner_left_panel");
+
+        var ajax = new XMLHttpRequest();
+        ajax.onload = function(){
+            if(ajax.status == 200 || ajax.status == 4){
+                inner_panel.innerHTML = ajax.responseText;
+            }
+        }
+        
+    });
+</script>

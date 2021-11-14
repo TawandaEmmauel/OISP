@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Image Sharing Platform</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.css">
 
 </head>
 
@@ -15,8 +15,32 @@
 
 <body>
     <div id="wrapper">
-            
+            <form>
+                <input type="text" name="username" placeholder="Username"><br>
+                <input type="text" name="password" placeholder="Password"><br>
+                <input type="text" name="password2" placeholder="Confirm Password"><br>
+                <input type="submit" value="Sign up">
+            </form>
     </div>
 
 </body>
 </html>
+
+<script>
+    function _(element){
+        return document.getElementById(element);
+    }
+
+    var label = _("label_chat");
+    label.addEventListener("click",function(){
+        var inner_panel = _("inner_left_panel");
+
+        var ajax = new XMLHttpRequest();
+        ajax.onload = function(){
+            if(ajax.status == 200 || ajax.status == 4){
+                inner_panel.innerHTML = ajax.responseText;
+            }
+        }
+        
+    });
+</script>
