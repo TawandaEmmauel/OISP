@@ -6,11 +6,13 @@
     font-family: myfont;
     src: url(UI\Fonts\OpenSans-Regular.ttf);
 }
-
+body{
+    background-color: rgba(72, 72, 214, 0.452);
+}
 #wrapper {
     max-width: 900px;
     min-height: 500px;
-    display: flex;
+    /* display: flex; */
     margin: auto;
     color: grey;
     font-size: 13px;
@@ -40,6 +42,17 @@ input[type=submit] {
     border-radius: 5px;
     border: solid thin 1px gray;
     cursor: pointer;
+}
+
+#header{
+    background-color: #485b6c;
+    height: 70px;
+    font-size: 40px;
+    /* text-align: center; */
+    font-family: cursive;
+    width: 100%;
+    color: white;
+    
 }
 
 
