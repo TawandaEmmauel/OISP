@@ -16,14 +16,16 @@
 <body>
 
     <div id="header">
-        Welcome
+        Welcome to the Online Image Sharing Platform Sign Up page
+        <!-- <div >Sign Up</div> -->
     </div>
     <div id="wrapper">
-            <form>
+            <form id="myform">
                 <input type="text" name="username" placeholder="Username"><br>
+                <input type="text" name="email" placeholder="Emaill"><br>
                 <input type="text" name="password" placeholder="Password"><br>
                 <input type="text" name="password2" placeholder="Confirm Password"><br>
-                <input type="submit" value="Sign up">
+                <input type="submit" value="sign up" id="signup_button">
             </form>
     </div>
 
@@ -34,17 +36,56 @@
     function _(element){
         return document.getElementById(element);
     }
+   
 
-    var label = _("label_chat");
-    label.addEventListener("click",function(){
-        var inner_panel = _("inner_left_panel");
+    var signup_button = _("signup_button");
+    signup_button.addEventListener("click" , collect_data);
 
-        var ajax = new XMLHttpRequest();
-        ajax.onload = function(){
-            if(ajax.status == 200 || ajax.status == 4){
-                inner_panel.innerHTML = ajax.responseText;
+    function collect_data(){
+        var myform = _("myform");
+        var inputs = myform.getElementsByTagName("INPUT");
+
+        var data = {};
+        for (var i = inputs.length - 1; i >=  0; i--) {
+            
+            var key = inputs[i].name;
+
+            switch(key){
+                case "username":
+                    data.username = inputs[i].value;
+                    break;
+
+                case "email":
+                    data.email = inputs[i].value;
+                    break;
+
+                case "password":
+                    data.password = inputs[i].value;
+                    break;
+
+                case "password2":
+                    data.password2 = inputs[i].value;
+                    break;
+
             }
         }
+
         
-    });
+
+    }
+
+    function send_data(data,type){
+
+        var xml = new XMLHttpRequest();
+
+        xml.onload = function(){
+            if(xml.readyState == 4 || xml.status == 200){
+
+                alert(xml.responseText);
+            }
+
+            xml.open("POST","api.php",true);
+            xml.send(data);
+        }
+    }
 </script>
