@@ -96,7 +96,7 @@ function send_data(data,type){
             alert(xml.responseText);
         }
     }
-
+ 
         data.data_type = type;
         var data_string = JSON.stringify(data);
         xml.open("POST","api.php",true);
