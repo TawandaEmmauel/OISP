@@ -2,7 +2,6 @@
 
 session_start();
 
-print_r($_POST);
 
 $info = (object)[];
 
@@ -59,6 +58,16 @@ if(isset($_FILES['file']) && $_FILES['file']['name'] != ""){
 }
 
 if($data_type == "change_profile_image"){
+
+	if($destination != ""){
+
+		//save to database
+		$id = $_SESSION['userid'];
+		$query = "update users set image = '$destination' where userid = '$id' limit 1";
+		$DB->write($query,[]);
+	}
+}else
+if($data_type == "upload_images"){
 
 	if($destination != ""){
 

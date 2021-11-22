@@ -26,65 +26,37 @@ if(is_array($data)){
 	}
 
 	$mydata ='
- 
-		<style type="text/css">
-		 
-	 		@keyframes appear{
-
-				0%{opacity:0;transform: translateY(50px) rotate(5deg);transform-origin:100% 100%;}
-				100%{opacity:1;transform: translateY(0px) rotate(0deg);transform-origin:100% 100%;}
-	 		}
-
- 			form{
-				text-align: left;
-				margin: auto;
-				padding: 10px;
-				width:100%;
-				max-width: 400px;
-			}
-
-			input[type=text],input[type=password],input[type=button]{
-
-				padding:10px;
-				margin: 10px;
-				width:200px;
-				border-radius: 5px;
-				border:solid 1px grey;
-			}
-
-			input[type=button]{
-
-				width: 220px;
-		 		cursor: pointer;
-				background-color: #2b5488;
-				color: white;
-			}
-
-			input[type=radio]{
-
-				transform: scale(1.2);
-				cursor: pointer;
-			}
-		 
-			#error{
-
-				text-align: center;
-				padding: 0.5em;
-				background-color: #ecaf91;
-				color: white;
-				display: none;
-			}
-
-			.dragging{
-				border: dashed 2px #aaa;
-			}
-
-		</style>
-		 
-		   
-		
-  
-  
+							
+						<!DOCTYPE html>
+							<html>
+							
+							<head>
+								<title>Image Upload</title>
+								
+							</head>
+							
+							<body>
+								<div id="content">
+							
+									<form method="POST"
+										action=""
+										enctype="multipart/form-data">
+										<input type="file"
+											name="uploadfile"
+											value="" />
+							
+										<div>
+											<button type="submit"
+													name="upload">
+											UPLOAD
+											</button>
+										</div>
+									</form>
+								</div>
+							</body>
+							
+							</html>
+	
 	';
 
 	$info->message = $mydata;

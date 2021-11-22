@@ -54,7 +54,8 @@ $info = (Object)[];
  		
 	}
 
-	$data['password'] = $DATA_OBJ->password;
+	
+	
 	$password = $DATA_OBJ->password2;
 	if(empty($DATA_OBJ->password))
 	{
@@ -70,8 +71,8 @@ $info = (Object)[];
 		{
 			$Error .= "password must be at least 8 characters long. <br>";
 		}
- 
 	}
+	$data['password']  = password_hash($DATA_OBJ->password, PASSWORD_DEFAULT);
 
 
 	if($Error == "")

@@ -27,7 +27,7 @@ $info = (Object)[];
 		if(is_array($result))
 		{
 			$result = $result[0];
-			if($result->password == $DATA_OBJ->password)
+			if(password_verify($DATA_OBJ->password,$result->password) == "1")
 			{
 				$_SESSION['userid'] = $result->userid;
 				$info->message = "You're successfully logged in";

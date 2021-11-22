@@ -12,7 +12,7 @@
 	<div id="wrapper">
  
  		<div id="header">
- 			My Chat
+ 			Online Image Sharing Platform
  			<div style="font-size: 20px;font-family: myFont;">Login</div>
  		</div>
  		<div id="error" style="">some text</div>
@@ -97,7 +97,7 @@
    		var data = JSON.parse(result);
    		if(data.data_type == "info"){
 
-   			window.location = "index.php";
+   			window.location = "index.html";
    		}else{
 
    			var error = _("error");
