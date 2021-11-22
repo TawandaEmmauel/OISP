@@ -2,6 +2,8 @@
 
 session_start();
 
+print_r($_POST);
+
 $info = (object)[];
 
 //check if logged in
@@ -18,7 +20,7 @@ if(!isset($_SESSION['userid']))
 	
 }
 
-require_once("includes\initialize.php");
+require_once("includes\autoload.php");
 $DB = new Database();
 
 $data_type = "";

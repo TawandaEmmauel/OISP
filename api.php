@@ -2,6 +2,7 @@
 
 session_start();
 
+
 $DATA_RAW = file_get_contents("php://input");
 $DATA_OBJ = json_decode($DATA_RAW);
 
@@ -46,6 +47,10 @@ if(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "signup")
 
 	//user info
 	include("includes/user_info.php");
+}elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "gallery")
+{
+	//user info
+	include("includes/gallery.php");
 }elseif(isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type == "contacts")
 {
 	//user info

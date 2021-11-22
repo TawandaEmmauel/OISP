@@ -18,7 +18,7 @@
 		<div id="left_pannel">
 
 			<div id="user_info" style="padding: 10px;">
-				<img id="profile_image" src="ui/images/user_male.jpg" style="height: 100px;width: 100px;">
+				<img id="profile_image" src="ui/images/user_male.jpg" style="height: 100px;width: 100px;border-radius: 50%;">
 				<br>
 				<span id="username">Username</span>
 				<br>
@@ -28,8 +28,9 @@
 				<br>
 				<br>
 				<div>
-					<label id="label_chat" for="radio_chat">Chat <img src="ui/icons/chat.png"></label>
-					<label id="label_contacts" for="radio_contacts">Contacts <img src="ui/icons/contacts.png"></label>
+					<label id="label_gallery" for="radio_gallery">Gallery <img src="ui/icons/gallery.png"></label>
+					<label id="label_contacts" for="radio_contacts">Share with <img src="ui/icons/contacts.png"></label>
+					<label id="label_chat" for="radio_chat">Chat <img src="ui/icons/chat.png"></label>					
 					<label id="label_settings" for="radio_settings">Settings <img src="ui/icons/settings.png"></label>
 					<label id="logout" for="radio_logout">Logout <img src="ui/icons/logout.png"></label>
 				</div>
@@ -42,7 +43,7 @@
 				<div id="loader_holder" class="loader_on"><img style="width:70px;" src="ui/icons/giphy.gif"></div>
 
 				<div id="image_viewer" class="image_off" onclick="close_image(event)"></div>
-				My Chat
+				Online Image Sharing Platform
 			</div>
 			
 			<div id="container" style="display: flex;">
@@ -51,6 +52,7 @@
 			 
 				</div>
 
+				<input type="radio" id="radio_gallery" name="myradio" style="display: none;">
 				<input type="radio" id="radio_chat" name="myradio" style="display: none;">
 				<input type="radio" id="radio_contacts" name="myradio" style="display: none;">
 				<input type="radio" id="radio_settings" name="myradio" style="display: none;">
@@ -78,6 +80,9 @@
 
 		return document.getElementById(element);
 	}
+
+	var label_gallery = _("label_gallery");
+	label_gallery.addEventListener("click",get_gallery);
 
 	var label_contacts = _("label_contacts");
 	label_contacts.addEventListener("click",get_contacts);
@@ -142,6 +147,14 @@
 						profile_image.src =  obj.image;
 						break;
 
+					case "gallery":
+						
+						var inner_left_pannel = _("inner_left_pannel");
+ 
+						inner_right_pannel.style.overflow = "hidden";
+						inner_left_pannel.innerHTML =  obj.message;
+						break;
+					
 					case "contacts":
 						
 						var inner_left_pannel = _("inner_left_pannel");
@@ -181,11 +194,12 @@
 
 						var messages_holder = _("messages_holder");
 						
-						setTimeout(function(){
-							messages_holder.scrollTo(0,messages_holder.scrollHeight);
-							var message_text = _("message_text");
-							message_text.focus();
-						},100);
+						// setTimeout(function(){
+						// 	messages_holder.scrollTo(0,messages_holder.scrollHeight);
+						// 	var message_text = _("message_text");
+						// 	message_text.focus();
+						// },100);
+						
 						
 						if(typeof obj.new_message != 'undefined'){
 							if(obj.new_message){
@@ -229,6 +243,17 @@
 
 	get_data({},"user_info");
 	get_data({},"contacts");
+	get_data({},"gallery");
+	
+	var radio_gallery = _("radio_gallery");
+	radio_gallery.checked = true;
+
+	function get_gallery(e)
+	{
+
+		get_data({},"gallery");
+	}
+	
 	
 	var radio_contacts = _("radio_contacts");
 	radio_contacts.checked = true;
@@ -299,6 +324,12 @@
 		{
 			
     		get_data({},"contacts");
+		}
+		
+		if(radio_gallery.checked)
+		{
+			
+    		get_data({},"gallery");
 		}
  
   
@@ -415,11 +446,11 @@
 
    
    	function upload_profile_image(files){
-
-   		var filename = files[0].name;
+		   
+		var filename = files[0].name;
    		var ext_start = filename.lastIndexOf(".");
    		var ext = filename.substr(ext_start + 1,3);
-   		if(!(ext == "jpg" || ext == "JPG")){
+   		if(!(ext == "jpg" || ext == "JPG" || ext == "png" || ext == "PNG" || ext == "ico" || ext == "ICO")){
 
    			alert("This file type is not allowed");
    			return;
