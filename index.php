@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="style.css">
 
+
 </head>
 
 
@@ -482,6 +483,45 @@
 		xml.open("POST","uploader.php",true);
 		xml.send(myform);
    	}
+	
+	function upload_images(files){
+		   
+		   var filename = files[0].name;
+			  var ext_start = filename.lastIndexOf(".");
+			  var ext = filename.substr(ext_start + 1,3);
+			  if(!(ext == "jpg" || ext == "JPG" || ext == "png" || ext == "PNG" || ext == "ico" || ext == "ICO"))
+			  {
+   
+				  alert("This file type is not allowed");
+				  return;
+			  }
+   
+		   var upload_images_button = _("upload_images");
+			  upload_images_button.disabled = true;
+			  upload_images_button.innerHTML = "Uploading Image...";
+   
+			  var myform = new FormData();
+   
+			  var xml = new XMLHttpRequest();
+   
+			  xml.onload = function(){
+   
+				  if(xml.readyState == 4 || xml.status == 200){
+   
+					  //alert(xml.responseText);
+					  get_data({},"user_info");
+					  get_settings(true);
+					  upload_images_button.disabled = false;
+					  upload_images_button.innerHTML = "Upload Image";
+				  }
+			  }
+   
+		   myform.append('file',files[0]);
+		   myform.append('data_type',"upload_images");
+	
+		   xml.open("POST","uploader.php",true);
+		   xml.send(myform);
+		  }
 
 
    	function handle_drag_and_drop(e){
